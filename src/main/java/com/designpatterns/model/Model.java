@@ -9,6 +9,7 @@ import com.designpatterns.model.shapes.ShapeRegistry;
 
 import java.util.List;
 import java.util.Observer;
+import java.util.Set;
 
 public class Model implements ModelFacade {
     private String selectedShape;
@@ -17,7 +18,7 @@ public class Model implements ModelFacade {
     private CommandHandler commandHandler;
 
     public Model() {
-        this.selectedShape = "line";
+        this.selectedShape = "oval";
         this.shapeRegistry = new ShapeRegistry();
         this.shapeHandler = new ShapeHandler();
         this.commandHandler = new CommandHandler();
@@ -69,5 +70,15 @@ public class Model implements ModelFacade {
     public void setEndPoint(Point point) {
         System.out.println("Set end point: " + point);
         shapeHandler.updateCurrentShape(point);
+    }
+
+    @Override
+    public Set<String> getShapeDefinitions() {
+        return shapeRegistry.getShapes();
+    }
+
+    @Override
+    public void setCurrentShapeType(String shapeType) {
+        this.selectedShape = shapeType;
     }
 }

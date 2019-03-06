@@ -5,6 +5,7 @@ import com.designpatterns.model.shapes.Shape;
 
 import java.util.List;
 import java.util.Observer;
+import java.util.Set;
 
 public interface ModelFacade {
     void addShape(Shape shape);
@@ -15,4 +16,6 @@ public interface ModelFacade {
     void observeShapes(Observer observer);
     void setStartingPoint(Point point);
     void setEndPoint(Point point);
+    Set<String> getShapeDefinitions();
+    void setCurrentShapeType(String shapeType);
 }

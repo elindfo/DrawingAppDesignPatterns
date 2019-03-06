@@ -11,7 +11,7 @@ public class ShapeRegistry extends Observable {
 
     public ShapeRegistry() {
         this.shapeStore = new HashMap<>();
-        this.shapeStore.put("circle", new Oval());
+        this.shapeStore.put("oval", new Oval());
         this.shapeStore.put("line", new Line());
     }
 

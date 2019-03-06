@@ -1,6 +1,7 @@
 package com.designpatterns.view;
 
 import com.designpatterns.controller.Controller;
+import com.designpatterns.model.ModelFacade;
 import javafx.scene.layout.BorderPane;
 
 public class View extends BorderPane {
@@ -8,9 +9,9 @@ public class View extends BorderPane {
     private AppCanvas appCanvas;
     private ToolMenu toolMenu;
 
-    public View() {
+    public View(ModelFacade model) {
         this.appCanvas = new AppCanvas(200, 200);
-        this.toolMenu = new ToolMenu();
+        this.toolMenu = new ToolMenu(model);
         this.setCenter(this.appCanvas);
         this.setLeft(this.toolMenu);
     }
