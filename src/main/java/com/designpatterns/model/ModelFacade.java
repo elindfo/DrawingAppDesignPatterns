@@ -22,4 +22,5 @@ public interface ModelFacade {
     void toggleMode();
     boolean isSelectionMode();
     Optional<ShapeViewProperties> selectIntersectingShape(Point point);
+    void updateShape(ShapeViewProperties shapeViewProperties);
 }

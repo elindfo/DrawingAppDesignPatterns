@@ -1,5 +1,7 @@
 package com.designpatterns.model;
 
+import com.designpatterns.model.shapes.Shape;
+
 public class ShapeViewProperties {
     private String color;
     private double lineWidth;
@@ -9,6 +11,12 @@ public class ShapeViewProperties {
         this.color = color;
         this.lineWidth = lineWidth;
         this.filled = filled;
+    }
+
+    public ShapeViewProperties(Shape shape) {
+        this.color = shape.getColor();
+        this.lineWidth = shape.getLineWidth();
+        this.filled = shape.isFilled();
     }
 
     public String getColor() {

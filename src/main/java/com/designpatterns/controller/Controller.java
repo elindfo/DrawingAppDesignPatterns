@@ -3,7 +3,6 @@ package com.designpatterns.controller;
 import com.designpatterns.model.Model;
 import com.designpatterns.model.ShapeViewProperties;
 import com.designpatterns.model.shapes.Point;
-import com.designpatterns.model.shapes.Shape;
 import com.designpatterns.view.View;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
@@ -64,7 +63,7 @@ public class Controller {
         if (model.isSelectionMode()) {
             Optional<ShapeViewProperties> shapeProperties = model.selectIntersectingShape(new Point(mouseEvent.getX(), mouseEvent.getY()));
             shapeProperties.ifPresent(s -> {
-//                view.showShapePropertiesPopup(s).ifPresent(model::);
+                view.showShapePropertiesPopup(s).ifPresent(model::updateShape);
             });
         }
     }

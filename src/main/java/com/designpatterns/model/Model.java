@@ -3,6 +3,7 @@ package com.designpatterns.model;
 import com.designpatterns.model.command.AddShape;
 import com.designpatterns.model.command.Command;
 import com.designpatterns.model.command.CommandHandler;
+import com.designpatterns.model.command.EditShape;
 import com.designpatterns.model.shapes.Point;
 import com.designpatterns.model.shapes.Shape;
 import com.designpatterns.model.shapes.ShapeRegistry;
@@ -99,14 +100,12 @@ public class Model implements ModelFacade {
 
     @Override
     public Optional<ShapeViewProperties> selectIntersectingShape(Point point) {
-        List<Shape> shapes = this.shapeHandler.getShapeList().stream().filter(shape -> shape.intersects(point)).collect(Collectors.toList());
-        if (!shapes.isEmpty()) {
-            Shape shape = shapes.get(shapes.size() - 1);
-            System.out.println(shape);
-            return Optional.of(new ShapeViewProperties(shape.getColor(), shape.getLineWidth(), shape.isFilled()));
-        } else {
-            System.out.println("Nothing found");
-        }
-        return Optional.empty();
+        return shapeHandler.getIntersectingShapeProperties(point);
+    }
+
+    @Override
+    public void updateShape(ShapeViewProperties shapeViewProperties) {
+        EditShape editShape = new EditShape(shapeHandler, shapeViewProperties, shapeHandler.getCurrentlyEditedShape());
+        this.commandHandler.executeCommand(editShape);
     }
 }
