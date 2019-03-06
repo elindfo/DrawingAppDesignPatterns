@@ -1,6 +1,8 @@
 package com.designpatterns.model.shapes;
 
-public class Size {
+import java.io.Serializable;
+
+public class Size implements Serializable {
 
     private double w, h;
 

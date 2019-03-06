@@ -15,14 +15,17 @@ public class View extends BorderPane {
     private AppCanvas appCanvas;
     private ToolMenu toolMenu;
     private UndoRedoView undoRedoView;
+    private TopMenu topMenu;
 
     public View(ModelFacade model) {
         this.appCanvas = new AppCanvas(200, 200);
         this.toolMenu = new ToolMenu(model);
         this.undoRedoView = new UndoRedoView();
+        this.topMenu = new TopMenu();
         this.setCenter(this.appCanvas);
         this.setLeft(this.toolMenu);
-        this.setTop(this.undoRedoView);
+        this.setBottom(this.undoRedoView);
+        this.setTop(topMenu);
     }
 
     public void setEventHandlers(Controller controller) {
@@ -30,7 +33,7 @@ public class View extends BorderPane {
         this.appCanvas.setEventHandlers(controller);
         this.toolMenu.setEventHandlers(controller);
         this.undoRedoView.setEventHandlers(controller);
-
+        this.topMenu.setEventHandlers(controller);
         controller.subscribeModel(this.appCanvas);
     }
 
@@ -62,5 +65,13 @@ public class View extends BorderPane {
             return null;
         });
         return dialog.showAndWait();
+    }
+
+    public void showAlert(String title, String headerText, String contentText) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(headerText);
+        alert.setContentText(contentText);
+        alert.showAndWait();
     }
 }

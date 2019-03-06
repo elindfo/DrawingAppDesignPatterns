@@ -3,7 +3,9 @@ package com.designpatterns.model.shapes;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public abstract class Shape {
+import java.io.Serializable;
+
+public abstract class Shape implements Serializable {
 
     private Point start, end;
     private String color;

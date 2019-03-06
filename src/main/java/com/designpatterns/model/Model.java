@@ -8,6 +8,8 @@ import com.designpatterns.model.shapes.Point;
 import com.designpatterns.model.shapes.Shape;
 import com.designpatterns.model.shapes.ShapeRegistry;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Observer;
 import java.util.Optional;
@@ -107,5 +109,16 @@ public class Model implements ModelFacade {
     public void updateShape(ShapeViewProperties shapeViewProperties) {
         EditShape editShape = new EditShape(shapeHandler, shapeViewProperties, shapeHandler.getCurrentlyEditedShape());
         this.commandHandler.executeCommand(editShape);
+    }
+
+    @Override
+    public void load(File file) throws IOException, ClassNotFoundException {
+        List<Shape> shapes = FileHandler.deserialize(file);
+        this.shapeHandler.setShapesList(shapes);
+    }
+
+    @Override
+    public void save(File file) throws IOException {
+        FileHandler.serialize(file, this.shapeHandler.getShapeList());
     }
 }
