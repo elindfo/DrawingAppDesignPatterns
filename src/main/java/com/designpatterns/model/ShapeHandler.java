@@ -78,4 +78,10 @@ public class ShapeHandler extends Observable {
     public void setCurrentlyEditedShape(Shape currentlyEditedShape) {
         this.currentlyEditedShape = currentlyEditedShape;
     }
+
+    public void setShapesList(List<Shape> shapes) {
+        this.shapeList = shapes;
+        setChanged();
+        notifyObservers();
+    }
 }

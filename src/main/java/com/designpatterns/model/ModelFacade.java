@@ -3,6 +3,8 @@ package com.designpatterns.model;
 import com.designpatterns.model.shapes.Point;
 import com.designpatterns.model.shapes.Shape;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Observer;
 import java.util.Optional;
@@ -23,4 +25,6 @@ public interface ModelFacade {
     boolean isSelectionMode();
     Optional<ShapeViewProperties> selectIntersectingShape(Point point);
     void updateShape(ShapeViewProperties shapeViewProperties);
+    void load(File file) throws IOException, ClassNotFoundException;
+    void save(File file) throws IOException;
 }

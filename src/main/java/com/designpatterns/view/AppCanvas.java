@@ -18,7 +18,6 @@ public class AppCanvas extends Canvas implements Observer {
         graphicsContext = this.getGraphicsContext2D();
         graphicsContext.setFill(Color.GREEN);
         graphicsContext.fillRect(0, 0, width, height);
-        graphicsContext.strokeLine(10, 10, 50, 50);
     }
 
     @Override
