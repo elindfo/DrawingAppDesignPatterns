@@ -1,5 +1,27 @@
 package com.designpatterns.model.shapes;
 
-public abstract class Shape implements Cloneable{
+import javafx.scene.canvas.GraphicsContext;
+
+public abstract class Shape implements Cloneable {
+    private Point start, end;
+
     protected abstract Shape createCopy();
+
+    protected abstract void draw(GraphicsContext graphicsContext);
+
+    public Point getStart() {
+        return start;
+    }
+
+    public void setStart(Point start) {
+        this.start = start;
+    }
+
+    public Point getEnd() {
+        return end;
+    }
+
+    public void setEnd(Point end) {
+        this.end = end;
+    }
 }

@@ -59,7 +59,9 @@ public class Model implements ModelFacade {
 
     @Override
     public void setStartingPoint(Point point) {
-        shapeRegistry.getShape(selectedShape);
+        Shape shape = shapeRegistry.getShape(selectedShape);
+//        shape.
+        shapeHandler.setCurrentShape(shape);
     }
 
     @Override

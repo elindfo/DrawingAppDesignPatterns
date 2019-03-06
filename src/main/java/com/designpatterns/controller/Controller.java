@@ -34,7 +34,6 @@ public class Controller {
     }
 
     private void init() {
-
     }
 
     public void subscribeRegistry(Observer observer) {
@@ -43,7 +42,6 @@ public class Controller {
 
     public void subscribeModel(Observer observer) {
         model.observeShapes(observer);
-//         model.addObserver(observer);
     }
 
     public void handleCanvasDragEvent(MouseEvent mouseEvent) {
@@ -61,11 +59,10 @@ public class Controller {
         System.out.println("Release");
     }
 
-    public void handleToolMenuSelected(ActionEvent actionEvent) {
-
-    }
-
     public void handleCanvasMouseClicked(MouseEvent mouseEvent) {
         System.out.println("Clicked");
+    }
+
+    public void handleToolMenuSelected(ActionEvent actionEvent) {
     }
 }
