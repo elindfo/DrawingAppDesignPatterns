@@ -1,5 +1,7 @@
 package com.designpatterns.model;
 
+import com.designpatterns.model.shapes.Line;
+import com.designpatterns.model.shapes.Point;
 import com.designpatterns.model.shapes.Shape;
 
 import java.util.ArrayList;
@@ -28,5 +30,18 @@ public class ShapeHandler extends Observable {
 
     public void setCurrentShape(Shape currentShape) {
         this.currentShape = currentShape;
+        shapeList.add(currentShape);
+        this.setChanged();
+        this.notifyObservers();
+    }
+
+    public Shape getCurrentShape() {
+        return this.currentShape;
+    }
+
+    public void updateCurrentShape(Point point) {
+        this.currentShape.setEnd(point);
+        this.setChanged();
+        this.notifyObservers();
     }
 }

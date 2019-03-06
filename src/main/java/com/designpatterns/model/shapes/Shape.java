@@ -3,11 +3,12 @@ package com.designpatterns.model.shapes;
 import javafx.scene.canvas.GraphicsContext;
 
 public abstract class Shape implements Cloneable {
+
     private Point start, end;
 
     protected abstract Shape createCopy();
 
-    protected abstract void draw(GraphicsContext graphicsContext);
+    public abstract void draw(GraphicsContext graphicsContext);
 
     public Point getStart() {
         return start;

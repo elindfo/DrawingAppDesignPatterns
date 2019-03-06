@@ -46,17 +46,14 @@ public class Controller {
 
     public void handleCanvasDragEvent(MouseEvent mouseEvent) {
         model.setEndPoint(new Point(mouseEvent.getX(), mouseEvent.getY()));
-        System.out.println("Drag");
     }
 
     public void handleCanvasMousePressed(MouseEvent mouseEvent) {
         model.setStartingPoint(new Point(mouseEvent.getX(), mouseEvent.getY()));
-        System.out.println("Press");
     }
 
     public void handleCanvasMouseRelease(MouseEvent mouseEvent) {
         model.setEndPoint(new Point(mouseEvent.getX(), mouseEvent.getY()));
-        System.out.println("Release");
     }
 
     public void handleCanvasMouseClicked(MouseEvent mouseEvent) {

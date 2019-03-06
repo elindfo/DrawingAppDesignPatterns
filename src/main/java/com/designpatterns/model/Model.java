@@ -7,9 +7,7 @@ import com.designpatterns.model.shapes.Point;
 import com.designpatterns.model.shapes.Shape;
 import com.designpatterns.model.shapes.ShapeRegistry;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
 import java.util.Observer;
 
 public class Model implements ModelFacade {
@@ -59,13 +57,17 @@ public class Model implements ModelFacade {
 
     @Override
     public void setStartingPoint(Point point) {
+        System.out.println("Set starting point: " + point);
         Shape shape = shapeRegistry.getShape(selectedShape);
-//        shape.
+        System.out.println(shape);
+        shape.setStart(point);
+        shape.setEnd(point);
         shapeHandler.setCurrentShape(shape);
     }
 
     @Override
     public void setEndPoint(Point point) {
-
+        System.out.println("Set end point: " + point);
+        shapeHandler.updateCurrentShape(point);
     }
 }
