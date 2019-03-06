@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Observer;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Model implements ModelFacade {
     private String selectedShape;
@@ -25,13 +26,6 @@ public class Model implements ModelFacade {
         this.shapeHandler = new ShapeHandler();
         this.commandHandler = new CommandHandler();
         this.selectionMode = false;
-    }
-
-    @Override
-    public void addShape(Shape shape) {
-        Shape shapeToDraw = shapeRegistry.getShape(selectedShape);
-        Command addShapeCommand = new AddShape(shapeHandler, shapeToDraw);
-        commandHandler.executeCommand(addShapeCommand);
     }
 
     @Override
@@ -104,13 +98,15 @@ public class Model implements ModelFacade {
     }
 
     @Override
-    public void selectIntersectingShape(Point point) {
-        Optional<Shape> first = this.shapeHandler.getShapeList().stream().filter(shape -> shape.intersects(point)).findFirst();
-        if(first.isPresent()) {
-            System.out.println(first.get());
-        }
-        else {
+    public Optional<ShapeViewProperties> selectIntersectingShape(Point point) {
+        List<Shape> shapes = this.shapeHandler.getShapeList().stream().filter(shape -> shape.intersects(point)).collect(Collectors.toList());
+        if (!shapes.isEmpty()) {
+            Shape shape = shapes.get(shapes.size() - 1);
+            System.out.println(shape);
+            return Optional.of(new ShapeViewProperties(shape.getColor(), shape.getLineWidth(), shape.isFilled()));
+        } else {
             System.out.println("Nothing found");
         }
+        return Optional.empty();
     }
 }

@@ -5,10 +5,10 @@ import com.designpatterns.model.shapes.Shape;
 
 import java.util.List;
 import java.util.Observer;
+import java.util.Optional;
 import java.util.Set;
 
 public interface ModelFacade {
-    void addShape(Shape shape);
     void undo();
     void redo();
     List<Shape> getShapes();
@@ -19,10 +19,7 @@ public interface ModelFacade {
     Set<String> getShapeDefinitions();
     void setCurrentShapeType(String shapeType);
     void finishShape(Point point);
-
     void toggleMode();
-
     boolean isSelectionMode();
-
-    void selectIntersectingShape(Point point);
+    Optional<ShapeViewProperties> selectIntersectingShape(Point point);
 }

@@ -1,7 +1,9 @@
 package com.designpatterns.controller;
 
 import com.designpatterns.model.Model;
+import com.designpatterns.model.ShapeViewProperties;
 import com.designpatterns.model.shapes.Point;
+import com.designpatterns.model.shapes.Shape;
 import com.designpatterns.view.View;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
@@ -9,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.util.Observer;
+import java.util.Optional;
 
 public class Controller {
 
@@ -43,23 +46,27 @@ public class Controller {
     }
 
     public void handleCanvasDragEvent(MouseEvent mouseEvent) {
-        if(!model.isSelectionMode())
+        if (!model.isSelectionMode())
             model.setEndPoint(new Point(mouseEvent.getX(), mouseEvent.getY()));
     }
 
     public void handleCanvasMousePressed(MouseEvent mouseEvent) {
-        if(!model.isSelectionMode())
+        if (!model.isSelectionMode())
             model.setStartingPoint(new Point(mouseEvent.getX(), mouseEvent.getY()));
     }
 
     public void handleCanvasMouseRelease(MouseEvent mouseEvent) {
-        if(!model.isSelectionMode())
+        if (!model.isSelectionMode())
             model.finishShape(new Point(mouseEvent.getX(), mouseEvent.getY()));
     }
 
     public void handleCanvasMouseClicked(MouseEvent mouseEvent) {
-        if(model.isSelectionMode())
-            model.selectIntersectingShape(new Point(mouseEvent.getX(), mouseEvent.getY()));
+        if (model.isSelectionMode()) {
+            Optional<ShapeViewProperties> shapeProperties = model.selectIntersectingShape(new Point(mouseEvent.getX(), mouseEvent.getY()));
+            shapeProperties.ifPresent(s -> {
+//                view.showShapePropertiesPopup(s).ifPresent(model::);
+            });
+        }
     }
 
     public void handleToolMenuSelected(String shapeType) {

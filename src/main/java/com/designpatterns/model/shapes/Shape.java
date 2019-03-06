@@ -6,14 +6,12 @@ import javafx.scene.paint.Color;
 public abstract class Shape {
 
     private Point start, end;
-    private String fillColor;
-    private String strokeColor;
+    private String color;
     private double lineWidth;
     private boolean filled;
 
     public Shape() {
-        this.fillColor = "#00F";
-        this.strokeColor = "#00F";
+        this.color = "#00F";
         this.lineWidth = 4.0;
         this.filled = true;
     }
@@ -26,17 +24,15 @@ public abstract class Shape {
         boolean xIntersects;
         boolean yIntersects;
 
-        if(start.getX() < end.getX()) {
+        if (start.getX() < end.getX()) {
             xIntersects = point.getX() >= start.getX() && point.getX() <= end.getX();
-        }
-        else{
+        } else {
             xIntersects = point.getX() <= start.getX() && point.getX() >= end.getX();
         }
 
-        if(start.getY() < end.getY()) {
+        if (start.getY() < end.getY()) {
             yIntersects = point.getY() >= start.getY() && point.getY() <= end.getY();
-        }
-        else{
+        } else {
             yIntersects = point.getY() <= start.getY() && point.getY() >= end.getY();
         }
         return xIntersects && yIntersects;
@@ -44,8 +40,8 @@ public abstract class Shape {
 
     final public void draw(GraphicsContext graphicsContext) {
         // TODO Implement shared functionality
-        graphicsContext.setFill(Color.web(fillColor));
-        graphicsContext.setStroke(Color.web(strokeColor));
+        graphicsContext.setFill(Color.web(color));
+        graphicsContext.setStroke(Color.web(color));
         graphicsContext.setLineWidth(lineWidth);
         drawShape(graphicsContext);
     }
@@ -66,12 +62,12 @@ public abstract class Shape {
         this.end = end;
     }
 
-    public String getFillColor() {
-        return fillColor;
+    public String getColor() {
+        return color;
     }
 
-    public void setFillColor(String fillColor) {
-        this.fillColor = fillColor;
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public double getLineWidth() {
