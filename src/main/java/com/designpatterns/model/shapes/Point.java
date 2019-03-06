@@ -25,6 +25,12 @@ public class Point {
         this.y = y;
     }
 
+    public Point add(Point p) {
+        this.x += p.getX();
+        this.y += p.getY();
+        return this;
+    }
+
     @Override
     public String toString() {
         return "Point{" +

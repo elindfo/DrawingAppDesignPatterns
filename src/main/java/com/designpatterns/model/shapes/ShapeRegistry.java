@@ -13,6 +13,7 @@ public class ShapeRegistry extends Observable {
         this.shapeStore = new HashMap<>();
         this.shapeStore.put("oval", new Oval());
         this.shapeStore.put("line", new Line());
+        this.shapeStore.put("ovalline", new ShapeGroup(new Line(), new Oval()));
     }
 
     public Shape getShape(String name) {
