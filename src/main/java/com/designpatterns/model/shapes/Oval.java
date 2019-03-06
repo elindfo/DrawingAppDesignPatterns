@@ -22,8 +22,9 @@ public class Oval extends Shape {
         double w = e.getX() - s.getX();
         double h = e.getY() - s.getY();
 
-        //TODO Take into account drawing in negative x and y direction
+        double x = w < 0 ? e.getX() : s.getX();
+        double y = h < 0 ? e.getY() : s.getY();
 
-        graphicsContext.strokeOval(s.getX(), s.getY(), w, h);
+        graphicsContext.strokeOval(x, y, Math.abs(w), Math.abs(h));
     }
 }
