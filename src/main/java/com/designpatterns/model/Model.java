@@ -81,4 +81,12 @@ public class Model implements ModelFacade {
     public void setCurrentShapeType(String shapeType) {
         this.selectedShape = shapeType;
     }
+
+    @Override
+    public void finishShape(Point point) {
+        Shape shapeToDraw = shapeHandler.getCurrentShape();
+        Command addShapeCommand = new AddShape(shapeHandler, shapeToDraw);
+        commandHandler.executeCommand(addShapeCommand);
+        shapeHandler.setCurrentShape(null);
+    }
 }

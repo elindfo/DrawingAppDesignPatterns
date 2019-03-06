@@ -27,9 +27,11 @@ public class AppCanvas extends Canvas implements Observer {
         graphicsContext.setFill(Color.GREEN);
         this.graphicsContext.clearRect(0, 0, getWidth(), getHeight());
         this.graphicsContext.fillRect(0, 0, getWidth(), getHeight());
-        ((ShapeHandler)observable).getShapeList().forEach(shape -> {
-            shape.draw(this.graphicsContext);
-        });
+        ShapeHandler shapeHandler = (ShapeHandler) observable;
+        shapeHandler.getShapeList().forEach(shape -> shape.draw(this.graphicsContext));
+        if (shapeHandler.getCurrentShape() != null) {
+            shapeHandler.getCurrentShape().draw(this.graphicsContext);
+        }
     }
 
     public void setEventHandlers(Controller controller) {

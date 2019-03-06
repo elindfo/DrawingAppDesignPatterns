@@ -18,12 +18,14 @@ public class CommandHandler {
     }
 
     public void undo() {
+        if(executedCommands.isEmpty()) return;
         Command command = executedCommands.pop();
         command.undo();
         undoneCommands.push(command);
     }
 
     public void redo() {
+        if(undoneCommands.isEmpty()) return;
         Command command = undoneCommands.pop();
         command.execute();
         executedCommands.push(command);

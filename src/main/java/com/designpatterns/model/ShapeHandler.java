@@ -20,17 +20,21 @@ public class ShapeHandler extends Observable {
         return shapeList;
     }
 
-    public boolean addShape(Shape shape) {
-        return shapeList.add(shape);
+    public void addShape(Shape shape) {
+        shapeList.add(shape);
+        setChanged();
+        notifyObservers();
     }
 
-    public boolean removeShape(Shape shape) {
-        return shapeList.remove(shape);
+    public void removeShape(Shape shape) {
+        shapeList.remove(shape);
+        setChanged();
+        notifyObservers();
     }
 
     public void setCurrentShape(Shape currentShape) {
         this.currentShape = currentShape;
-        shapeList.add(currentShape);
+//        shapeList.add(currentShape);
         this.setChanged();
         this.notifyObservers();
     }

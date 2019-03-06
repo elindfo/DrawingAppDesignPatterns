@@ -3,6 +3,7 @@ package com.designpatterns.controller;
 import com.designpatterns.model.Model;
 import com.designpatterns.model.shapes.Point;
 import com.designpatterns.view.View;
+import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -50,7 +51,7 @@ public class Controller {
     }
 
     public void handleCanvasMouseRelease(MouseEvent mouseEvent) {
-        model.setEndPoint(new Point(mouseEvent.getX(), mouseEvent.getY()));
+        model.finishShape(new Point(mouseEvent.getX(), mouseEvent.getY()));
     }
 
     public void handleCanvasMouseClicked(MouseEvent mouseEvent) {
@@ -59,5 +60,13 @@ public class Controller {
 
     public void handleToolMenuSelected(String shapeType) {
         model.setCurrentShapeType(shapeType);
+    }
+
+    public void handleUndoPressed(ActionEvent actionEvent) {
+        model.undo();
+    }
+
+    public void handleRedoPressed(ActionEvent actionEvent) {
+        model.redo();
     }
 }

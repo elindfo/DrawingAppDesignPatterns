@@ -14,7 +14,7 @@ import javafx.scene.layout.VBox;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ToolMenu extends Parent {
+public class ToolMenu extends VBox {
 
     private List<Button> menuButtons;
 
@@ -24,9 +24,7 @@ public class ToolMenu extends Parent {
             Button b = new Button(definition);
             this.menuButtons.add(b);
         });
-        VBox vbox = new VBox();
-        vbox.getChildren().addAll(this.menuButtons);
-        this.getChildren().add(vbox);
+        this.getChildren().addAll(this.menuButtons);
     }
 
     public void setEventHandlers(Controller controller) {

@@ -18,4 +18,5 @@ public interface ModelFacade {
     void setEndPoint(Point point);
     Set<String> getShapeDefinitions();
     void setCurrentShapeType(String shapeType);
+    void finishShape(Point point);
 }
