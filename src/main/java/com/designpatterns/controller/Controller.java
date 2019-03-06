@@ -2,15 +2,17 @@ package com.designpatterns.controller;
 
 import com.designpatterns.model.Model;
 import com.designpatterns.model.ModelFacade;
+import com.designpatterns.model.shapes.Line;
 import com.designpatterns.view.View;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.util.Observer;
 
 public class Controller {
 
-    private ModelFacade model;
+    private Model model;
     private View view;
 
     private Scene scene;
@@ -33,7 +35,25 @@ public class Controller {
 
     }
 
+    public void subscribeRegistry(Observer observer) {
+        model.observeRegistry(observer);
+    }
+
     public void subscribeModel(Observer observer) {
-        // model.addObserver(observer);
+        model.observeShapes(observer);
+//         model.addObserver(observer);
+    }
+
+    public void handleCanvasDragEvent(MouseEvent mouseEvent) {
+        System.out.println("Drag");
+//        model.addShape();
+    }
+
+    public void handleCanvasMousePressed(MouseEvent mouseEvent) {
+        System.out.println("Press");
+    }
+
+    public void handleCanvasMouseRelease(MouseEvent mouseEvent) {
+        System.out.println("Release");
     }
 }

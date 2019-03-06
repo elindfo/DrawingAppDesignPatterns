@@ -17,7 +17,8 @@ public class View extends BorderPane {
 
     public void setEventHandlers(Controller controller) {
 
-        this.appCanvas.setOnMouseDragged(System.out::println);
+        this.appCanvas.setEventHandlers(controller);
+        this.toolMenu.setEventHandlers(controller);
 
         controller.subscribeModel(this.appCanvas);
     }
