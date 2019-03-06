@@ -19,4 +19,10 @@ public interface ModelFacade {
     Set<String> getShapeDefinitions();
     void setCurrentShapeType(String shapeType);
     void finishShape(Point point);
+
+    void toggleMode();
+
+    boolean isSelectionMode();
+
+    void selectIntersectingShape(Point point);
 }

@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
@@ -17,6 +18,7 @@ import java.util.List;
 public class ToolMenu extends VBox {
 
     private List<Button> menuButtons;
+    private ToggleButton modeButton;
 
     public ToolMenu(ModelFacade model) {
         this.menuButtons = new ArrayList<>();
@@ -24,7 +26,10 @@ public class ToolMenu extends VBox {
             Button b = new Button(definition);
             this.menuButtons.add(b);
         });
+        this.modeButton = new ToggleButton("hej");
+
         this.getChildren().addAll(this.menuButtons);
+        this.getChildren().add(this.modeButton);
     }
 
     public void setEventHandlers(Controller controller) {
@@ -33,5 +38,7 @@ public class ToolMenu extends VBox {
                 controller.handleToolMenuSelected(button.getText());
             });
         });
+
+        this.modeButton.setOnAction(controller::handleModeToggle);
     }
 }

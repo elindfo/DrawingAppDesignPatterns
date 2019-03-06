@@ -9,6 +9,7 @@ import com.designpatterns.model.shapes.ShapeRegistry;
 
 import java.util.List;
 import java.util.Observer;
+import java.util.Optional;
 import java.util.Set;
 
 public class Model implements ModelFacade {
@@ -16,12 +17,14 @@ public class Model implements ModelFacade {
     private ShapeRegistry shapeRegistry;
     private ShapeHandler shapeHandler;
     private CommandHandler commandHandler;
+    private boolean selectionMode;
 
     public Model() {
         this.selectedShape = "oval";
         this.shapeRegistry = new ShapeRegistry();
         this.shapeHandler = new ShapeHandler();
         this.commandHandler = new CommandHandler();
+        this.selectionMode = false;
     }
 
     @Override
@@ -88,5 +91,26 @@ public class Model implements ModelFacade {
         Command addShapeCommand = new AddShape(shapeHandler, shapeToDraw);
         commandHandler.executeCommand(addShapeCommand);
         shapeHandler.setCurrentShape(null);
+    }
+
+    @Override
+    public void toggleMode() {
+        this.selectionMode = !this.selectionMode;
+    }
+
+    @Override
+    public boolean isSelectionMode() {
+        return selectionMode;
+    }
+
+    @Override
+    public void selectIntersectingShape(Point point) {
+        Optional<Shape> first = this.shapeHandler.getShapeList().stream().filter(shape -> shape.intersects(point)).findFirst();
+        if(first.isPresent()) {
+            System.out.println(first.get());
+        }
+        else {
+            System.out.println("Nothing found");
+        }
     }
 }

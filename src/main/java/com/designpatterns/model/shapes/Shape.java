@@ -22,6 +22,26 @@ public abstract class Shape {
 
     protected abstract void drawShape(GraphicsContext graphicsContext);
 
+    public boolean intersects(Point point) {
+        boolean xIntersects;
+        boolean yIntersects;
+
+        if(start.getX() < end.getX()) {
+            xIntersects = point.getX() >= start.getX() && point.getX() <= end.getX();
+        }
+        else{
+            xIntersects = point.getX() <= start.getX() && point.getX() >= end.getX();
+        }
+
+        if(start.getY() < end.getY()) {
+            yIntersects = point.getY() >= start.getY() && point.getY() <= end.getY();
+        }
+        else{
+            yIntersects = point.getY() <= start.getY() && point.getY() >= end.getY();
+        }
+        return xIntersects && yIntersects;
+    }
+
     final public void draw(GraphicsContext graphicsContext) {
         // TODO Implement shared functionality
         graphicsContext.setFill(Color.web(fillColor));

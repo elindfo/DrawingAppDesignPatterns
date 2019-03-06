@@ -43,30 +43,38 @@ public class Controller {
     }
 
     public void handleCanvasDragEvent(MouseEvent mouseEvent) {
-        model.setEndPoint(new Point(mouseEvent.getX(), mouseEvent.getY()));
+        if(!model.isSelectionMode())
+            model.setEndPoint(new Point(mouseEvent.getX(), mouseEvent.getY()));
     }
 
     public void handleCanvasMousePressed(MouseEvent mouseEvent) {
-        model.setStartingPoint(new Point(mouseEvent.getX(), mouseEvent.getY()));
+        if(!model.isSelectionMode())
+            model.setStartingPoint(new Point(mouseEvent.getX(), mouseEvent.getY()));
     }
 
     public void handleCanvasMouseRelease(MouseEvent mouseEvent) {
-        model.finishShape(new Point(mouseEvent.getX(), mouseEvent.getY()));
+        if(!model.isSelectionMode())
+            model.finishShape(new Point(mouseEvent.getX(), mouseEvent.getY()));
     }
 
     public void handleCanvasMouseClicked(MouseEvent mouseEvent) {
-        System.out.println("Clicked");
+        if(model.isSelectionMode())
+            model.selectIntersectingShape(new Point(mouseEvent.getX(), mouseEvent.getY()));
     }
 
     public void handleToolMenuSelected(String shapeType) {
         model.setCurrentShapeType(shapeType);
     }
 
-    public void handleUndoPressed(ActionEvent actionEvent) {
+    public void handleUndoPressed(ActionEvent _actionEvent) {
         model.undo();
     }
 
-    public void handleRedoPressed(ActionEvent actionEvent) {
+    public void handleRedoPressed(ActionEvent _actionEvent) {
         model.redo();
+    }
+
+    public void handleModeToggle(ActionEvent _actionEvent) {
+        model.toggleMode();
     }
 }
