@@ -3,7 +3,9 @@ package com.designpatterns.controller;
 import com.designpatterns.model.Model;
 import com.designpatterns.model.ModelFacade;
 import com.designpatterns.model.shapes.Line;
+import com.designpatterns.model.shapes.Point;
 import com.designpatterns.view.View;
+import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -45,15 +47,25 @@ public class Controller {
     }
 
     public void handleCanvasDragEvent(MouseEvent mouseEvent) {
+        model.setEndPoint(new Point(mouseEvent.getX(), mouseEvent.getY()));
         System.out.println("Drag");
-//        model.addShape();
     }
 
     public void handleCanvasMousePressed(MouseEvent mouseEvent) {
+        model.setStartingPoint(new Point(mouseEvent.getX(), mouseEvent.getY()));
         System.out.println("Press");
     }
 
     public void handleCanvasMouseRelease(MouseEvent mouseEvent) {
+        model.setEndPoint(new Point(mouseEvent.getX(), mouseEvent.getY()));
         System.out.println("Release");
+    }
+
+    public void handleToolMenuSelected(ActionEvent actionEvent) {
+
+    }
+
+    public void handleCanvasMouseClicked(MouseEvent mouseEvent) {
+        System.out.println("Clicked");
     }
 }

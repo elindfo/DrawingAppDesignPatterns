@@ -1,8 +1,6 @@
 package com.designpatterns.view;
 
 import com.designpatterns.controller.Controller;
-import com.designpatterns.model.Model;
-import com.designpatterns.model.ViewModel;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -24,12 +22,13 @@ public class AppCanvas extends Canvas implements Observer {
 
     @Override
     public void update(Observable observable, Object o) {
-//        ((ViewModel)observable).getShapes().forEach(shape -> {
+//        ((ShapeHandler)observable).getShapes().forEach(shape -> {
 //
 //        });
     }
 
     public void setEventHandlers(Controller controller) {
+        this.setOnMouseClicked(controller::handleCanvasMouseClicked);
         this.setOnMousePressed(controller::handleCanvasMousePressed);
         this.setOnMouseDragged(controller::handleCanvasDragEvent);
         this.setOnMouseReleased(controller::handleCanvasMouseRelease);

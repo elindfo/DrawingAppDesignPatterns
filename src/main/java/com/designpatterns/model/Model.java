@@ -1,5 +1,9 @@
 package com.designpatterns.model;
 
+import com.designpatterns.model.command.AddShape;
+import com.designpatterns.model.command.Command;
+import com.designpatterns.model.command.CommandHandler;
+import com.designpatterns.model.shapes.Point;
 import com.designpatterns.model.shapes.Shape;
 import com.designpatterns.model.shapes.ShapeRegistry;
 
@@ -9,31 +13,57 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class Model implements ModelFacade {
+    private String selectedShape;
     private ShapeRegistry shapeRegistry;
-    private ViewModel viewModel;
+    private ShapeHandler shapeHandler;
+    private CommandHandler commandHandler;
 
     public Model() {
+        this.selectedShape = "line";
         this.shapeRegistry = new ShapeRegistry();
-        this.viewModel = new ViewModel();
+        this.shapeHandler = new ShapeHandler();
+        this.commandHandler = new CommandHandler();
     }
 
     @Override
     public void addShape(Shape shape) {
-        viewModel.addShape(shape);
+        Shape shapeToDraw = shapeRegistry.getShape(selectedShape);
+        Command addShapeCommand = new AddShape(shapeHandler, shapeToDraw);
+        commandHandler.executeCommand(addShapeCommand);
+    }
+
+    @Override
+    public void undo() {
+        commandHandler.undo();
+    }
+
+    @Override
+    public void redo() {
+        commandHandler.redo();
     }
 
     @Override
     public List<Shape> getShapes() {
-        return viewModel.getShapeList();
+        return shapeHandler.getShapeList();
     }
 
     @Override
     public void observeRegistry(Observer observer) {
-        viewModel.addObserver(observer);
+        shapeRegistry.addObserver(observer);
     }
 
     @Override
     public void observeShapes(Observer observer) {
-        shapeRegistry.addObserver(observer);
+        shapeHandler.addObserver(observer);
+    }
+
+    @Override
+    public void setStartingPoint(Point point) {
+        shapeRegistry.getShape(selectedShape);
+    }
+
+    @Override
+    public void setEndPoint(Point point) {
+
     }
 }
