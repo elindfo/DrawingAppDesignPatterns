@@ -34,7 +34,6 @@ public class ShapeHandler extends Observable {
 
     public void setCurrentShape(Shape currentShape) {
         this.currentShape = currentShape;
-//        shapeList.add(currentShape);
         this.setChanged();
         this.notifyObservers();
     }

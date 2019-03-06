@@ -13,8 +13,8 @@ public class Line extends Shape{
     }
 
     @Override
-    public void draw(GraphicsContext graphicsContext) {
-        System.out.println("[Line] draw");
+    protected void drawShape(GraphicsContext graphicsContext) {
+        System.out.println("[Line] drawShape");
         System.out.println(graphicsContext);
         Point s = getStart();
         Point e = getEnd();

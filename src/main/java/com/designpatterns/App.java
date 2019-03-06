@@ -13,12 +13,12 @@ import javafx.stage.Stage;
  *
  * [.] MVC (Olika paket för olika delar)
  * [.] Subject-Observer, uppdatera vyer när modell ändras
- * [ ] Command, för undo/redo funktion
+ * [.] Command, för undo/redo funktion
  * [ ] Composite, för att gruppera objekt, hantera gemensamma egenskaper
  * [ ] Template-metod där det kan behövas
  * [.] Facade, dölj komplexa modeller
  * [.] Skapelsemönster Ex. Prototype, för att skapa de ritbara objekten
- * [ ] Automatisk uppdatering av knappar/menyalternativ från de ritbara typer som finns i modellen
+ * [.] Automatisk uppdatering av knappar/menyalternativ från de ritbara typer som finns i modellen
  */
 public class App extends Application {
     public static void main( String[] args ) {
@@ -26,7 +26,7 @@ public class App extends Application {
     }
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
         new Controller(stage);
     }
 }

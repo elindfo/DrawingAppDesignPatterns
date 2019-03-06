@@ -20,7 +20,7 @@ public class ShapeGroup extends Shape {
     }
 
     @Override
-    public void draw(GraphicsContext graphicsContext) {
-        shapeList.forEach(shape -> shape.draw(graphicsContext));
+    protected void drawShape(GraphicsContext graphicsContext) {
+        shapeList.forEach(shape -> shape.drawShape(graphicsContext));
     }
 }
