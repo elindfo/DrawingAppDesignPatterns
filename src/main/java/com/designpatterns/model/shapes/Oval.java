@@ -7,8 +7,11 @@ public class Oval extends Shape {
     @Override
     protected Shape createCopy() {
         Oval copy = new Oval();
-        copy.setStart(this.getStart());
-        copy.setEnd(this.getEnd());
+        copy.setStart(this.getStart().createCopy());
+        copy.setEnd(this.getEnd().createCopy());
+        copy.setColor(this.getColor());
+        copy.setLineWidth(this.getLineWidth());
+        copy.setFilled(this.isFilled());
         return copy;
     }
 

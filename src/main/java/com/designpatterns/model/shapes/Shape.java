@@ -13,6 +13,8 @@ public abstract class Shape implements Serializable {
     private boolean filled;
 
     public Shape() {
+        this.start = new Point(0, 0);
+        this.end = new Point(0, 0);
         this.color = "#00F";
         this.lineWidth = 4.0;
         this.filled = true;

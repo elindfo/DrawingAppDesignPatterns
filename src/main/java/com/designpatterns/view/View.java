@@ -18,7 +18,8 @@ public class View extends BorderPane {
     private TopMenu topMenu;
 
     public View(ModelFacade model) {
-        this.appCanvas = new AppCanvas(200, 200);
+        this.appCanvas = new AppCanvas(400, 400);
+//        this.appCanvas = new AppCanvas();
         this.toolMenu = new ToolMenu(model);
         this.undoRedoView = new UndoRedoView();
         this.topMenu = new TopMenu();

@@ -15,22 +15,29 @@ public class AppCanvas extends Canvas implements Observer {
 
     public AppCanvas(double width, double height) {
         super(width, height);
+//    public AppCanvas() {
         graphicsContext = this.getGraphicsContext2D();
         graphicsContext.setFill(Color.GREEN);
-        graphicsContext.fillRect(0, 0, width, height);
+        graphicsContext.fillRect(0, 0, this.getWidth(), this.getHeight());
+        widthProperty().addListener(observable -> draw());
+        heightProperty().addListener(observable -> draw());
     }
 
     @Override
     public void update(Observable observable, Object o) {
         System.out.println("[Canvas] Update");
-        graphicsContext.setFill(Color.GREEN);
-        this.graphicsContext.clearRect(0, 0, getWidth(), getHeight());
-        this.graphicsContext.fillRect(0, 0, getWidth(), getHeight());
+        this.draw();
         ShapeHandler shapeHandler = (ShapeHandler) observable;
         shapeHandler.getShapeList().forEach(shape -> shape.draw(this.graphicsContext));
         if (shapeHandler.getCurrentShape() != null) {
             shapeHandler.getCurrentShape().draw(this.graphicsContext);
         }
+    }
+
+    private void draw() {
+        graphicsContext.setFill(Color.GREEN);
+        this.graphicsContext.clearRect(0, 0, getWidth(), getHeight());
+        this.graphicsContext.fillRect(0, 0, getWidth(), getHeight());
     }
 
     public void setEventHandlers(Controller controller) {

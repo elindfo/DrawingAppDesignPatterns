@@ -21,7 +21,6 @@ public class Controller {
     private View view;
 
     private Stage stage;
-    private Scene scene;
 
     public Controller(Stage stage) {
         this.stage = stage;
@@ -29,9 +28,10 @@ public class Controller {
         this.view = new View(this.model);
         this.view.setEventHandlers(this);
 
-        this.scene = new Scene(view, 400, 400);
-        this.stage.setScene(this.scene);
+        Scene scene = new Scene(view/*, 600, 500*/);
+        this.stage.setScene(scene);
         this.stage.setTitle("Shape Drawing App");
+        this.stage.setResizable(false);
 
         init();
 
@@ -67,9 +67,7 @@ public class Controller {
     public void handleCanvasMouseClicked(MouseEvent mouseEvent) {
         if (model.isSelectionMode()) {
             Optional<ShapeViewProperties> shapeProperties = model.selectIntersectingShape(new Point(mouseEvent.getX(), mouseEvent.getY()));
-            shapeProperties.ifPresent(s -> {
-                Platform.runLater(() -> view.showShapePropertiesPopup(s).ifPresent(model::updateShape));
-            });
+            shapeProperties.ifPresent(s -> Platform.runLater(() -> view.showShapePropertiesPopup(s).ifPresent(model::updateShape)));
         }
     }
 
@@ -89,16 +87,14 @@ public class Controller {
         model.toggleMode();
     }
 
-
     public void handleLoadedFile(File selectedFile) {
-        if(selectedFile != null) {
+        if (selectedFile != null) {
             try {
                 model.load(selectedFile);
             } catch (Exception e) {
                 Platform.runLater(() -> view.showAlert("Error", "File load failure", "Unable to load from file"));
             }
-        }
-        else {
+        } else {
             Platform.runLater(() -> view.showAlert("Error", "File load failure", "File not found"));
         }
     }
@@ -110,8 +106,7 @@ public class Controller {
             } catch (Exception e) {
                 Platform.runLater(() -> view.showAlert("Error", "File save failure", "Unable to save to file"));
             }
-        }
-        else {
+        } else {
             Platform.runLater(() -> view.showAlert("Error", "File save failure", "Wrong file type"));
         }
     }

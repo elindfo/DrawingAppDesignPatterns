@@ -11,6 +11,10 @@ public class Point implements Serializable {
         this.y = y;
     }
 
+    public Point createCopy() {
+        return new Point(x, y);
+    }
+
     public double getX() {
         return x;
     }
