@@ -14,8 +14,8 @@ import javafx.stage.Stage;
  * [.] MVC (Olika paket för olika delar)
  * [.] Subject-Observer, uppdatera vyer när modell ändras
  * [.] Command, för undo/redo funktion
- * [ ] Composite, för att gruppera objekt, hantera gemensamma egenskaper
- * [ ] Template-metod där det kan behövas
+ * [.] Composite, för att gruppera objekt, hantera gemensamma egenskaper
+ * [.] Template-metod där det kan behövas
  * [.] Facade, dölj komplexa modeller
  * [.] Skapelsemönster Ex. Prototype, för att skapa de ritbara objekten
  * [.] Automatisk uppdatering av knappar/menyalternativ från de ritbara typer som finns i modellen
