@@ -48,7 +48,7 @@ public class Model implements ModelFacade {
 
     @Override
     public void observeRegistry(Observer observer) {
-        shapeRegistry.addObserver(observer);
+//        shapeRegistry.addObserver(observer);
     }
 
     @Override

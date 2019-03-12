@@ -5,7 +5,7 @@ import javafx.scene.paint.Color;
 
 import java.io.Serializable;
 
-public abstract class Shape implements Serializable {
+public abstract class Shape implements Serializable, Cloneable {
 
     private Point start, end;
     private String color;
@@ -19,8 +19,6 @@ public abstract class Shape implements Serializable {
         this.lineWidth = 4.0;
         this.filled = true;
     }
-
-    protected abstract Shape createCopy();
 
     protected abstract void drawShape(GraphicsContext graphicsContext);
 
@@ -87,5 +85,18 @@ public abstract class Shape implements Serializable {
 
     public void setFilled(boolean filled) {
         this.filled = filled;
+    }
+
+    @Override
+    protected Shape clone() throws CloneNotSupportedException {
+        try {
+            Shape copy = (Shape) super.clone();
+            copy.setStart(getStart().clone());
+            copy.setEnd(getEnd().clone());
+            return copy;
+        } catch (CloneNotSupportedException e) {
+            System.out.println("Shape: Cloning not supported");
+            return null;
+        }
     }
 }

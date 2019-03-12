@@ -2,7 +2,7 @@ package com.designpatterns.model.shapes;
 
 import java.io.Serializable;
 
-public class Point implements Serializable {
+public class Point implements Serializable, Cloneable {
 
     private double x;
     private double y;
@@ -12,9 +12,9 @@ public class Point implements Serializable {
         this.y = y;
     }
 
-    public Point createCopy() {
-        return new Point(x, y);
-    }
+//    public Point createCopy() {
+//        return new Point(x, y);
+//    }
 
     public double getX() {
         return x;
@@ -30,6 +30,15 @@ public class Point implements Serializable {
 
     public void setY(double y) {
         this.y = y;
+    }
+
+    @Override
+    protected Point clone() throws CloneNotSupportedException {
+        try {
+            return (Point) super.clone();
+        } catch (CloneNotSupportedException e) {
+            return null;
+        }
     }
 
     @Override

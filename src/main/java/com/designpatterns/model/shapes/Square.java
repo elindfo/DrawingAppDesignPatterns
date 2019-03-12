@@ -4,16 +4,16 @@ import javafx.scene.canvas.GraphicsContext;
 
 public class Square extends Shape {
 
-    @Override
-    protected Shape createCopy() {
-        Square square = new Square();
-        square.setStart(this.getStart().createCopy());
-        square.setEnd(this.getEnd().createCopy());
-        square.setColor(this.getColor());
-        square.setLineWidth(this.getLineWidth());
-        square.setFilled(this.isFilled());
-        return square;
-    }
+//    @Override
+//    protected Shape createCopy() {
+//        Square square = new Square();
+//        square.setStart(this.getStart().createCopy());
+//        square.setEnd(this.getEnd().createCopy());
+//        square.setColor(this.getColor());
+//        square.setLineWidth(this.getLineWidth());
+//        square.setFilled(this.isFilled());
+//        return square;
+//    }
 
     @Override
     protected void drawShape(GraphicsContext graphicsContext) {

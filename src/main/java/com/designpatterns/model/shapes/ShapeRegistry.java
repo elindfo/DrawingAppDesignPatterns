@@ -18,7 +18,11 @@ public class ShapeRegistry {
     }
 
     public Shape getShape(String name) {
-        return shapeStore.get(name).createCopy();
+        try {
+            return shapeStore.get(name).clone();
+        } catch (CloneNotSupportedException e) {
+            return null;
+        }
     }
 
     public Set<String> getShapes() {
