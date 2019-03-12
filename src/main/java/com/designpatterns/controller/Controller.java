@@ -1,6 +1,7 @@
 package com.designpatterns.controller;
 
 import com.designpatterns.model.Model;
+import com.designpatterns.model.ModelFacade;
 import com.designpatterns.model.ShapeNotSelectedException;
 import com.designpatterns.model.ShapeViewProperties;
 import com.designpatterns.model.shapes.Point;
@@ -17,7 +18,7 @@ import java.util.Optional;
 
 public class Controller {
 
-    private Model model;
+    private ModelFacade model;
     private View view;
 
     private Stage stage;

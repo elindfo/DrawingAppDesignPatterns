@@ -1,6 +1,6 @@
 package com.designpatterns.model.command;
 
-import com.designpatterns.model.ShapeHandler;
+import com.designpatterns.model.shapes.ShapeHandler;
 import com.designpatterns.model.ShapeViewProperties;
 import com.designpatterns.model.shapes.Shape;
 

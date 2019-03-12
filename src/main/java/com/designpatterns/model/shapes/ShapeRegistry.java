@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.Set;
 
-public class ShapeRegistry extends Observable {
+public class ShapeRegistry {
 
     private Map<String, Shape> shapeStore;
 

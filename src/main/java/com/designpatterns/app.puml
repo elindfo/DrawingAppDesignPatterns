@@ -1,0 +1,70 @@
+@startuml
+
+package controller {
+    class Controller
+}
+package model {
+    package command {
+        abstract class Command
+        class AddShape
+        class EditShape
+        class CommandHandler
+    }
+    package shapes {
+        abstract class Shape
+        class Line
+        class Oval
+        class Point
+        class ShapeGroup
+        class ShapeHandler
+        class ShapeRegistry
+        class Square
+    }
+    class FileHandler
+    class Model
+    interface ModelFacade
+    class ShapeNotSelectedException
+    class ShapeViewProperties
+}
+package view {
+    class AppCanvas
+    class ToolMenu
+    class TopMenu
+    class UndoRedoView
+    class View
+}
+
+class App
+App .> Controller
+
+Controller o-- ModelFacade
+Controller o-- View
+view ..> Model
+View o-- TopMenu
+View o-- ToolMenu
+View o-- AppCanvas
+View o-- UndoRedoView
+AppCanvas ..|> Observer
+interface Observer
+
+Model ..|> ModelFacade
+Model ...> Shape
+Model ..> FileHandler
+Model o---- ShapeHandler
+Model o--- ShapeRegistry
+Model o-- CommandHandler
+
+Line --|> Shape
+Oval --|> Shape
+ShapeGroup --|> Shape
+ShapeGroup o-- Shape
+Square --|> Shape
+ShapeRegistry o-- Shape
+ShapeHandler --|> Observable
+ShapeHandler o-- Shape
+
+AddShape ..|> Command
+EditShape ..|> Command
+CommandHandler o-- Command
+
+@enduml

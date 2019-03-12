@@ -6,6 +6,7 @@ import com.designpatterns.model.command.CommandHandler;
 import com.designpatterns.model.command.EditShape;
 import com.designpatterns.model.shapes.Point;
 import com.designpatterns.model.shapes.Shape;
+import com.designpatterns.model.shapes.ShapeHandler;
 import com.designpatterns.model.shapes.ShapeRegistry;
 
 import java.io.File;

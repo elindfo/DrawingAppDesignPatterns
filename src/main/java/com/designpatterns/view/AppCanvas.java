@@ -1,7 +1,7 @@
 package com.designpatterns.view;
 
 import com.designpatterns.controller.Controller;
-import com.designpatterns.model.ShapeHandler;
+import com.designpatterns.model.shapes.ShapeHandler;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;

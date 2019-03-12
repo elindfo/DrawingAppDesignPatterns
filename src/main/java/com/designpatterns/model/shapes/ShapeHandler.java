@@ -1,5 +1,6 @@
-package com.designpatterns.model;
+package com.designpatterns.model.shapes;
 
+import com.designpatterns.model.ShapeViewProperties;
 import com.designpatterns.model.shapes.Point;
 import com.designpatterns.model.shapes.Shape;
 
