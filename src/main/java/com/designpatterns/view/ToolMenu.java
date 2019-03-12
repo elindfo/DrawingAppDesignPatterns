@@ -13,15 +13,17 @@ import java.util.List;
 
 public class ToolMenu extends BorderPane {
 
+    private static final int BUTTON_WIDTH = 100;
+
     private List<Button> menuButtons;
     private ToggleButton modeButton;
 
     public ToolMenu(ModelFacade model) {
         this.menuButtons = new ArrayList<>();
         model.getShapeDefinitions().stream().map(Button::new).forEach(menuButtons::add);
-        menuButtons.forEach(button -> button.setPrefWidth(100));
+        menuButtons.forEach(button -> button.setPrefWidth(BUTTON_WIDTH));
         this.modeButton = new ToggleButton("Sel. Mode");
-        modeButton.setPrefWidth(100);
+        modeButton.setPrefWidth(BUTTON_WIDTH);
 
         VBox vBox = new VBox();
         vBox.getChildren().addAll(this.menuButtons);

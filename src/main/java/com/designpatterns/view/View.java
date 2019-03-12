@@ -12,14 +12,16 @@ import java.util.Optional;
 
 public class View extends BorderPane {
 
+    private static final double CANVAS_WIDTH = 400.0;
+    private static final double CANVAS_HEIGHT = 400.0;
+
     private AppCanvas appCanvas;
     private ToolMenu toolMenu;
     private UndoRedoView undoRedoView;
     private TopMenu topMenu;
 
     public View(ModelFacade model) {
-        this.appCanvas = new AppCanvas(400, 400);
-//        this.appCanvas = new AppCanvas();
+        this.appCanvas = new AppCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
         this.toolMenu = new ToolMenu(model);
         this.undoRedoView = new UndoRedoView();
         this.topMenu = new TopMenu();
@@ -30,7 +32,6 @@ public class View extends BorderPane {
     }
 
     public void setEventHandlers(Controller controller) {
-
         this.appCanvas.setEventHandlers(controller);
         this.toolMenu.setEventHandlers(controller);
         this.undoRedoView.setEventHandlers(controller);

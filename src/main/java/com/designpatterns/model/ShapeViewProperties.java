@@ -3,6 +3,7 @@ package com.designpatterns.model;
 import com.designpatterns.model.shapes.Shape;
 
 public class ShapeViewProperties {
+
     private String color;
     private double lineWidth;
     private boolean filled;

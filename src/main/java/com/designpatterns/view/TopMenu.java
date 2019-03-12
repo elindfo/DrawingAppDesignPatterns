@@ -35,10 +35,8 @@ public class TopMenu extends MenuBar {
 
         this.saveFileItem.setOnAction(actionEvent -> {
             FileChooser fileChooser = new FileChooser();
-
             FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Seriallized files (*.ser)", "*.ser");
             fileChooser.getExtensionFilters().add(extFilter);
-
             File file = fileChooser.showSaveDialog(controller.getStage());
             controller.handleSaveToFile(file);
         });

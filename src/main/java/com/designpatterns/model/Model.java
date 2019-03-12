@@ -14,9 +14,9 @@ import java.util.List;
 import java.util.Observer;
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class Model implements ModelFacade {
+
     private String selectedShape;
     private ShapeRegistry shapeRegistry;
     private ShapeHandler shapeHandler;
@@ -24,7 +24,6 @@ public class Model implements ModelFacade {
     private boolean selectionMode;
 
     public Model() {
-        this.selectedShape = "oval";
         this.shapeRegistry = new ShapeRegistry();
         this.shapeHandler = new ShapeHandler();
         this.commandHandler = new CommandHandler();
@@ -57,10 +56,12 @@ public class Model implements ModelFacade {
     }
 
     @Override
-    public void setStartingPoint(Point point) {
-        System.out.println("Set starting point: " + point);
+    public void setStartingPoint(Point point) throws ShapeNotSelectedException {
+        if(selectedShape == null) {
+            throw new ShapeNotSelectedException();
+        }
         Shape shape = shapeRegistry.getShape(selectedShape);
-        System.out.println(shape);
+
         shape.setStart(point);
         shape.setEnd(point);
         shapeHandler.setCurrentShape(shape);
@@ -68,7 +69,6 @@ public class Model implements ModelFacade {
 
     @Override
     public void setEndPoint(Point point) {
-        System.out.println("Set end point: " + point);
         shapeHandler.updateCurrentShape(point);
     }
 

@@ -10,6 +10,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class ShapeHandler extends Observable {
+
     private List<Shape> shapeList;
     private Shape currentShape, currentlyEditedShape;
 
@@ -54,10 +55,7 @@ public class ShapeHandler extends Observable {
         if (!shapes.isEmpty()) {
             Shape shape = shapes.get(shapes.size() - 1);
             this.currentlyEditedShape = shape;
-            System.out.println(shape);
             return Optional.of(new ShapeViewProperties(shape.getColor(), shape.getLineWidth(), shape.isFilled()));
-        } else {
-            System.out.println("Nothing found");
         }
         return Optional.empty();
     }

@@ -3,6 +3,7 @@ package com.designpatterns.model.command;
 import java.util.Stack;
 
 public class CommandHandler {
+
     private Stack<Command> executedCommands;
     private Stack<Command> undoneCommands;
 

@@ -1,6 +1,7 @@
 package com.designpatterns.controller;
 
 import com.designpatterns.model.Model;
+import com.designpatterns.model.ShapeNotSelectedException;
 import com.designpatterns.model.ShapeViewProperties;
 import com.designpatterns.model.shapes.Point;
 import com.designpatterns.view.View;
@@ -11,7 +12,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.Observer;
 import java.util.Optional;
 
@@ -28,17 +28,10 @@ public class Controller {
         this.view = new View(this.model);
         this.view.setEventHandlers(this);
 
-        Scene scene = new Scene(view/*, 600, 500*/);
-        this.stage.setScene(scene);
+        this.stage.setScene(new Scene(view));
         this.stage.setTitle("Shape Drawing App");
         this.stage.setResizable(false);
-
-        init();
-
         this.stage.show();
-    }
-
-    private void init() {
     }
 
     public void subscribeRegistry(Observer observer) {
@@ -55,8 +48,13 @@ public class Controller {
     }
 
     public void handleCanvasMousePressed(MouseEvent mouseEvent) {
-        if (!model.isSelectionMode())
-            model.setStartingPoint(new Point(mouseEvent.getX(), mouseEvent.getY()));
+        if (!model.isSelectionMode()) {
+            try {
+                model.setStartingPoint(new Point(mouseEvent.getX(), mouseEvent.getY()));
+            } catch (ShapeNotSelectedException e) {
+                Platform.runLater(() -> this.view.showAlert("Error", "Shape not selected", "Select a shape"));
+            }
+        }
     }
 
     public void handleCanvasMouseRelease(MouseEvent mouseEvent) {
@@ -92,10 +90,8 @@ public class Controller {
             try {
                 model.load(selectedFile);
             } catch (Exception e) {
-                Platform.runLater(() -> view.showAlert("Error", "File load failure", "Unable to load from file"));
+                Platform.runLater(() -> view.showAlert("Error", "File load failure", e.getMessage()));
             }
-        } else {
-            Platform.runLater(() -> view.showAlert("Error", "File load failure", "File not found"));
         }
     }
 
@@ -106,13 +102,10 @@ public class Controller {
             } catch (Exception e) {
                 Platform.runLater(() -> view.showAlert("Error", "File save failure", "Unable to save to file"));
             }
-        } else {
-            Platform.runLater(() -> view.showAlert("Error", "File save failure", "Wrong file type"));
         }
     }
 
     public Stage getStage() {
         return this.stage;
     }
-
 }

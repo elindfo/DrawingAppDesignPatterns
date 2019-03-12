@@ -3,6 +3,7 @@ package com.designpatterns.model.shapes;
 import java.io.Serializable;
 
 public class Point implements Serializable {
+
     private double x;
     private double y;
 
@@ -29,12 +30,6 @@ public class Point implements Serializable {
 
     public void setY(double y) {
         this.y = y;
-    }
-
-    public Point add(Point p) {
-        this.x += p.getX();
-        this.y += p.getY();
-        return this;
     }
 
     @Override

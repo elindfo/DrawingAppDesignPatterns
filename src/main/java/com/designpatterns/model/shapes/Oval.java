@@ -15,10 +15,8 @@ public class Oval extends Shape {
         return copy;
     }
 
-
     @Override
     protected void drawShape(GraphicsContext graphicsContext) {
-        System.out.println("[Oval] drawShape");
         Point s = getStart();
         Point e = getEnd();
 
@@ -28,10 +26,12 @@ public class Oval extends Shape {
         double x = w < 0 ? e.getX() : s.getX();
         double y = h < 0 ? e.getY() : s.getY();
 
-        if (isFilled())
+        if (isFilled()){
             graphicsContext.fillOval(x, y, Math.abs(w), Math.abs(h));
-        else
+        }
+        else {
             graphicsContext.strokeOval(x, y, Math.abs(w), Math.abs(h));
+        }
 
     }
 }

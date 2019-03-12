@@ -43,7 +43,6 @@ public abstract class Shape implements Serializable {
     }
 
     final public void draw(GraphicsContext graphicsContext) {
-        // TODO Implement shared functionality
         graphicsContext.setFill(Color.web(color));
         graphicsContext.setStroke(Color.web(color));
         graphicsContext.setLineWidth(lineWidth);

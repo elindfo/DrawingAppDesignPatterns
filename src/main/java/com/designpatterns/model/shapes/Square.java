@@ -17,7 +17,6 @@ public class Square extends Shape {
 
     @Override
     protected void drawShape(GraphicsContext graphicsContext) {
-        System.out.println("[Square] drawShape");
         Point s = getStart();
         Point e = getEnd();
 
